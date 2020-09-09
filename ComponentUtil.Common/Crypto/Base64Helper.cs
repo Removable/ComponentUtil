@@ -12,17 +12,6 @@ namespace ComponentUtil.Common.Crypto
         /// <returns></returns>
         public static string Base64Encode(string content)
         {
-            content = content.Replace('-', '+').Replace('_', '/');
-            switch (content.Length % 4)
-            {
-                case 2:
-                    content += "==";
-                    break;
-                case 3:
-                    content += "=";
-                    break;
-            }
-
             var bytes = Encoding.UTF8.GetBytes(content);
             return Convert.ToBase64String(bytes);
         }
@@ -34,6 +23,17 @@ namespace ComponentUtil.Common.Crypto
         /// <returns></returns>
         public static string Base64Decode(string content)
         {
+            content = content.Replace('-', '+').Replace('_', '/');
+            switch (content.Length % 4)
+            {
+                case 2:
+                    content += "==";
+                    break;
+                case 3:
+                    content += "=";
+                    break;
+            }
+
             var bytes = Convert.FromBase64String(content);
             return Encoding.UTF8.GetString(bytes);
         }
