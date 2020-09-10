@@ -11,6 +11,8 @@
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/Removable/ComponentUtil</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Removable/ComponentUtil</RepositoryUrl>
+        <LangVersion>9</LangVersion>
+        <PackageVersion>0.2.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
