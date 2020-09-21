@@ -6,7 +6,7 @@
         {
             return int.TryParse(obj.ToString(), out var result) ? result : defaultVal;
         }
-        
+
         public static decimal ToDecimal(this object obj, decimal defaultVal)
         {
             return decimal.TryParse(obj.ToString(), out var result) ? result : defaultVal;

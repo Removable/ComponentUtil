@@ -8,15 +8,15 @@
         <Company>https://blog.imguan.com</Company>
         <Authors>Removable</Authors>
         <Description>一些常用的工具类方法</Description>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageLicenseFile>MIT_License.txt</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/Removable/ComponentUtil</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Removable/ComponentUtil</RepositoryUrl>
         <LangVersion>9</LangVersion>
-        <PackageVersion>0.2.0</PackageVersion>
+        <PackageVersion>0.2.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="C:\Users\me\Desktop\LICENSE.txt">
+      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License.txt">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>

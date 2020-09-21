@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="C:\Users\me\Desktop\LICENSE.txt">
+      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License.txt">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>
