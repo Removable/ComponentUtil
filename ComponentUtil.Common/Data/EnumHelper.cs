@@ -12,7 +12,7 @@ namespace ComponentUtil.Common.Data
         /// </summary>
         /// <param name="value">枚举值</param>
         /// <returns>枚举描述</returns>
-        public static string EnumDescription(Enum value)
+        public static string GetDescription(this Enum value)
         {
             var result = string.Empty;
 
@@ -33,7 +33,7 @@ namespace ComponentUtil.Common.Data
         /// </summary>
         /// <example>List&lt;EnumType&gt; types = Utilities.EnumItems&lt;EnumType&gt;()</example>
         /// <returns>枚举对象列表</returns>
-        public static List<T> EnumItems<T>()
+        public static List<T> GetEnumItems<T>()
         {
             var enumType = typeof(T);
 
@@ -44,10 +44,10 @@ namespace ComponentUtil.Common.Data
         ///     获取一个枚举的全部成员描述
         /// </summary>
         /// <returns>整个枚举的全部描述</returns>
-        public static List<string> GetDescriptions<T>()
+        public static List<string> GetAllDescriptions<T>()
         {
             var result = new List<string>();
-            var items = EnumItems<T>();
+            var items = GetEnumItems<T>();
 
             foreach (var item in items)
             {
