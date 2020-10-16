@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace ComponentUtil.Common.Data
 {
@@ -20,7 +21,7 @@ namespace ComponentUtil.Common.Data
             if (fieldInfo != null)
             {
                 var attributes =
-                    (DescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                    (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
                 if (attributes.Length > 0) result = attributes[0].Description;
             }
@@ -37,7 +38,7 @@ namespace ComponentUtil.Common.Data
         {
             var enumType = typeof(T);
 
-            return Enum.GetNames(enumType).Select(typeName => (T) Enum.Parse(enumType, typeName)).ToList();
+            return Enum.GetNames(enumType).Select(typeName => (T)Enum.Parse(enumType, typeName)).ToList();
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace ComponentUtil.Common.Data
                 if (fieldInfo != null)
                 {
                     var attributes =
-                        (DescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                        (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
                     if (attributes.Length > 0) result.Add(attributes[0].Description);
                 }
@@ -63,5 +64,54 @@ namespace ComponentUtil.Common.Data
 
             return result;
         }
+
+        /// <summary>
+        /// 通过反射获取枚举所有项的值和描述
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="enumName">指定的枚举完全名称（包括命名空间）</param>
+        /// <returns></returns>
+        public static List<(int value, string description)> GetEnumAllItemsByReflection(string assemblyName, string enumName)
+        {
+            var assembly = Assembly.Load(assemblyName);
+            if (assembly == null) return null;
+
+            var enumType = assembly.GetType(enumName);
+            if (enumType == null) return null;
+
+            var enumFields = enumType.GetFields(BindingFlags.Static | BindingFlags.Public);
+            if (!enumFields.Any()) return null;
+
+
+            var list = new List<(int value, string description)>();
+            foreach (var fi in enumFields)
+            {
+                var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                //描述
+                var description = attributes.Length > 0 ? attributes[0].Description : "";
+                //值
+                var value = Enum.Parse(enumType, fi.Name).ToInt(int.MinValue);
+                if (string.IsNullOrWhiteSpace(description) || value == int.MinValue) continue;
+
+                list.Add((value, description));
+            }
+
+            return list;
+        }
+    }
+
+
+    public enum MyEnum
+    {
+        /// <summary>
+        /// a
+        /// </summary>
+        [System.ComponentModel.Description("啊")]
+        A = 1,
+        /// <summary>
+        /// b
+        /// </summary>
+        [System.ComponentModel.Description("哈")]
+        B = 2
     }
 }

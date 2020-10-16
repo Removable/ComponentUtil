@@ -4,11 +4,11 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>0.1.2</Version>
+        <Version>0.2.0</Version>
         <Company>https://blog.imguan.com</Company>
         <Authors>Removable</Authors>
         <Description>一些常用的工具类方法</Description>
-        <PackageLicenseFile>MIT_License.txt</PackageLicenseFile>
+        <PackageLicenseFile>MIT_License_CU.txt</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/Removable/ComponentUtil</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Removable/ComponentUtil</RepositoryUrl>
         <LangVersion>9</LangVersion>
@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License.txt">
+      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License_CU.txt">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>

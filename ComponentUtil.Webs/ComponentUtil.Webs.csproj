@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <Company>https://blog.imguan.com</Company>
         <Authors>Removable</Authors>
         <Description>项目部分代码来自https://github.com/dotnetcore/Util</Description>
         <PackageLicenseExpression></PackageLicenseExpression>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageLicenseFile>MIT_License_CU.txt</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/Removable/ComponentUtil</PackageProjectUrl>
         <RepositoryType></RepositoryType>
         <RepositoryUrl>https://github.com/Removable/ComponentUtil</RepositoryUrl>
@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License.txt">
+      <None Include="..\..\..\..\OneDrive\其他\其他备份\MIT_License_CU.txt">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>

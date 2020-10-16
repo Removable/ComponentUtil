@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ComponentUtil.Common.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,20 +10,9 @@ namespace ComponentUtil.Test
         [TestMethod]
         public void TestMethod()
         {
-            var a = ReflectionHelper.GetClassByName("MyEnum");
-            Assert.IsTrue(a == typeof(MyEnum));
-        }
-
-        enum MyEnum
-        {
-            /// <summary>
-            /// A
-            /// </summary>
-            AAA = 1,
-            /// <summary>
-            /// A
-            /// </summary>
-            BBB = 2,
+            var list = EnumHelper.GetEnumAllItemsByReflection("ComponentUtil.Common", "ComponentUtil.Common.Data.MyEnum");
+            Console.WriteLine(list);
+            Assert.IsTrue(list.Count == 2);
         }
     }
 }
