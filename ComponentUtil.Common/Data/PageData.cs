@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ComponentUtil.Common.Data
 {
-    public class PageData<T>
+    public record PageData<T>
     {
         public PageData(List<T> pagedData, int totalCount, int pageIndex, int pageSize)
         {
@@ -14,7 +15,19 @@ namespace ComponentUtil.Common.Data
             PageSize = pageSize;
             TotalPages = Convert.ToInt32(Math.Ceiling((double) TotalCount / pageSize));
 
-            ListData = pagedData;
+            PagedData = pagedData;
+        }
+
+        public PageData(List<T> listData, int pageIndex, int pageSize)
+        {
+            if (listData == null) listData = new List<T>();
+
+            TotalCount = listData.Count;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
+            TotalPages = Convert.ToInt32(Math.Ceiling((double) listData.Count / pageSize));
+
+            PagedData = listData.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
 
         /// <summary>
@@ -40,6 +53,6 @@ namespace ComponentUtil.Common.Data
         /// <summary>
         ///     数据
         /// </summary>
-        public List<T> ListData { get; }
+        public List<T> PagedData { get; }
     }
 }
