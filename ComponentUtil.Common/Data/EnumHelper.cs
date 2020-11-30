@@ -66,6 +66,30 @@ namespace ComponentUtil.Common.Data
         }
 
         /// <summary>
+        ///     获取一个枚举的全部成员描述
+        /// </summary>
+        /// <returns>整个枚举的全部描述</returns>
+        public static List<(T, string)> GetAllItemsAndDescriptions<T>()
+        {
+            var result = new List<(T, string)>();
+            var items = GetEnumItems<T>();
+
+            foreach (var item in items)
+            {
+                var fieldInfo = item.GetType().GetField(item.ToString());
+                if (fieldInfo != null)
+                {
+                    var attributes =
+                        (DescriptionAttribute[]) fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+                    if (attributes.Length > 0) result.Add((item, attributes[0].Description));
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 通过反射获取枚举所有项的值和描述
         /// </summary>
         /// <param name="assemblyName">程序集名称</param>
@@ -98,20 +122,5 @@ namespace ComponentUtil.Common.Data
 
             return list;
         }
-    }
-
-
-    public enum MyEnum
-    {
-        /// <summary>
-        /// a
-        /// </summary>
-        [System.ComponentModel.Description("啊")]
-        A = 1,
-        /// <summary>
-        /// b
-        /// </summary>
-        [System.ComponentModel.Description("哈")]
-        B = 2
     }
 }
