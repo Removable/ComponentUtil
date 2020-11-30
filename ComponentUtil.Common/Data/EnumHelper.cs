@@ -69,7 +69,7 @@ namespace ComponentUtil.Common.Data
         ///     获取一个枚举的全部成员描述
         /// </summary>
         /// <returns>整个枚举的全部描述</returns>
-        public static List<(T, string)> GetAllItemsAndDescriptions<T>()
+        public static List<(T enumItem, string description)> GetAllItemsAndDescriptions<T>()
         {
             var result = new List<(T, string)>();
             var items = GetEnumItems<T>();
