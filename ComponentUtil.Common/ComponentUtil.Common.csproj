@@ -4,7 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>0.2.3</Version>
+        <Version>0.2.4</Version>
         <Company>https://blog.imguan.com</Company>
         <Authors>Removable</Authors>
         <Description>一些常用的工具类方法</Description>
