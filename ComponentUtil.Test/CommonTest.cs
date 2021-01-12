@@ -30,5 +30,14 @@ namespace ComponentUtil.Test
             var paged = new PageData<int>(list, 2, 5);
             Assert.IsTrue(paged.PagedData.FirstOrDefault() == 5);
         }
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            var test = new TestClass {A = "111", B = 222};
+            var ps = typeof(TestClass).GetProperties();
+            Assert.IsTrue(ps[0].GetDescription() == "A属性");
+            Assert.IsTrue((string) test.GetPropertyByName("A") == "111");
+        }
     }
 }
