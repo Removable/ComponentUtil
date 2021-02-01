@@ -122,5 +122,25 @@ namespace ComponentUtil.Common.Data
 
             return list;
         }
+        
+        
+        /// <summary>
+        /// 根据枚举描述获取枚举值
+        /// </summary>
+        /// <typeparam name="T">枚举对象</typeparam>
+        /// <param name="description">枚举描述</param>
+        /// <returns>获取枚举值</returns>
+        public static T GetEnumValueByDescription<T>(string description)
+        {
+            var descriptions = GetAllItemsAndDescriptions<T>();
+            foreach (var kv in descriptions)
+            {
+                if (string.Equals(kv.description, description, StringComparison.OrdinalIgnoreCase))
+                {
+                    return kv.enumItem;
+                }
+            }
+            return default(T);
+        }
     }
 }
