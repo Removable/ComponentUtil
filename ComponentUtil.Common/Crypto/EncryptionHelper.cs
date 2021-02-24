@@ -23,6 +23,27 @@ namespace ComponentUtil.Common.Crypto
         }
 
         /// <summary>
+        /// 获取SHA256 Hash
+        /// </summary>
+        /// <param name="rawPass"></param>
+        /// <param name="salt"></param>
+        /// <returns></returns>
+        public static string Sha256(string rawPass, object salt = null)
+        {
+            if (salt != null)
+                rawPass = rawPass + "{" + salt + "}";
+
+            var sha256 = SHA256.Create();
+            var bs = Encoding.UTF8.GetBytes(rawPass);
+            var hs = sha256.ComputeHash(bs);
+            var stb = new StringBuilder();
+            foreach (var b in hs)
+                stb.Append(b.ToString("x2"));
+
+            return stb.ToString();
+        }
+
+        /// <summary>
         ///     MD5 加密字符串
         /// </summary>
         /// <param name="rawPass">源字符串</param>
