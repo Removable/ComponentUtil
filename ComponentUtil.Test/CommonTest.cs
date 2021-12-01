@@ -61,5 +61,13 @@ namespace ComponentUtil.Test
             var decryption = EncryptionHelper.Aes256Decrypt(encryption, iv, key);
             Assert.AreEqual(text, decryption);
         }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            var date = DateTime.Parse("2021-12-01 01:01:01");
+            var timeStamp = date.GetTimeStamp();
+            Assert.AreEqual(timeStamp, 1638291661);
+        }
     }
 }

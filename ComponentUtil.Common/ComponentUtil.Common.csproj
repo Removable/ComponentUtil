@@ -3,7 +3,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>0.4.0</Version>
+        <Version>0.4.1</Version>
         <Company>https://blog.imguan.com</Company>
         <Authors>Removable</Authors>
         <Description>一些常用的工具类方法</Description>
@@ -11,7 +11,7 @@
         <PackageProjectUrl>https://github.com/Removable/ComponentUtil</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Removable/ComponentUtil</RepositoryUrl>
         <LangVersion>9</LangVersion>
-        <PackageVersion>0.4.0</PackageVersion>
+        <PackageVersion>0.4.1</PackageVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
