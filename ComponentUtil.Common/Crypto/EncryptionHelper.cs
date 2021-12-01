@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -72,5 +73,82 @@ namespace ComponentUtil.Common.Crypto
         {
             return salt == null ? rawPass : Md5(rawPass + "{" + salt + "}");
         }
+
+        #region AES加解密
+
+        /// <summary>
+        /// AES加密
+        /// </summary>
+        /// <param name="text">待加密字符串</param>
+        /// <param name="iv">偏移</param>
+        /// <param name="key">密钥</param>
+        /// <returns></returns>
+        public static string Aes256Encrypt(string text, string iv, string key)
+        {
+            var cipher = CreateCipher(key);
+            cipher.IV = Convert.FromBase64String(iv);
+
+            var cryptTransform = cipher.CreateEncryptor();
+            var plaintext = Encoding.UTF8.GetBytes(text);
+            var cipherText = cryptTransform.TransformFinalBlock(plaintext, 0, plaintext.Length);
+
+            return Convert.ToBase64String(cipherText);
+        }
+
+        /// <summary>
+        /// AES解密
+        /// </summary>
+        /// <param name="encryptedText">待解密字符串</param>
+        /// <param name="iv">偏移</param>
+        /// <param name="key">密钥</param>
+        /// <returns></returns>
+        public static string Aes256Decrypt(string encryptedText, string iv, string key)
+        {
+            var cipher = CreateCipher(key);
+            cipher.IV = Convert.FromBase64String(iv);
+
+            var cryptTransform = cipher.CreateDecryptor();
+            var encryptedBytes = Convert.FromBase64String(encryptedText);
+            var plainBytes = cryptTransform.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
+
+            return Encoding.UTF8.GetString(plainBytes);
+        }
+
+        /// <summary>
+        /// 随机生成AES加解密所需密钥与偏移
+        /// </summary>
+        /// <returns></returns>
+        public static (string Key, string IVBase64) InitSymmetricEncryptionKeyIv()
+        {
+            var byteArray = new byte[32];
+            var randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(byteArray);
+            var key = Convert.ToBase64String(byteArray); // 256
+            var cipher = CreateCipher(key);
+            var ivBase64 = Convert.ToBase64String(cipher.IV);
+            return (key, ivBase64);
+        }
+
+        private static Aes CreateCipher(string keyBase64)
+        {
+            // Default values: Keysize 256, Padding PKC27
+            var cipher = Aes.Create();
+            cipher.Mode = CipherMode.CBC; // Ensure the integrity of the ciphertext if using CBC
+
+            cipher.Padding = PaddingMode.ISO10126;
+            cipher.Key = Convert.FromBase64String(keyBase64);
+
+            return cipher;
+        }
+
+        private static byte[] GenerateRandomBytes(int length)
+        {
+            var byteArray = new byte[length];
+            var randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(byteArray);
+            return byteArray;
+        }
+
+        #endregion
     }
 }
