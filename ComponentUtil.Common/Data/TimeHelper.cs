@@ -32,5 +32,24 @@ namespace ComponentUtil.Common.Data
                 _ => new DateTimeOffset(dateTime).ToUnixTimeSeconds(),
             };
         }
+        
+        /// <summary>
+        /// 从时间戳转为日期
+        /// </summary>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
+        public static DateTime? ToDateTime(long timeStamp)
+        {
+            var str = timeStamp.ToString();
+            if (str.Length == 10)
+            {
+                return DateTimeOffset.FromUnixTimeSeconds(timeStamp).LocalDateTime;
+            }
+            else if (str.Length == 13)
+            {
+                return DateTimeOffset.FromUnixTimeMilliseconds(timeStamp).LocalDateTime;
+            }
+            else return null;
+        }
     }
 }
