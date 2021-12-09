@@ -11,8 +11,10 @@ namespace ComponentUtil.Test
     {
         [System.ComponentModel.Description("Test1")]
         Test1,
+
         [System.ComponentModel.Description("Test2")]
         Test2,
+
         [System.ComponentModel.Description("Test3")]
         Test3,
     }
@@ -68,6 +70,12 @@ namespace ComponentUtil.Test
             var date = DateTime.Parse("2021-12-01 01:01:01");
             var timeStamp = date.GetTimeStamp();
             Assert.AreEqual(timeStamp, 1638291661);
+        }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            Assert.IsTrue(TypeParseHelper.Convert<bool>("True"));
         }
     }
 }
